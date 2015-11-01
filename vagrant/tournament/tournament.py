@@ -95,28 +95,20 @@ def reportMatch(winner, loser):
       winner:  the id number of the player who won
       loser:  the id number of the player who lost
     """
-    # Query used to find a player name by their id.
-    queryName = "SELECT name from players where player=(%s);"
 
     # Update the Winner's matches_won and matches_played
     data = (winner,)
     queryWin = '''UPDATE players SET matches_won = matches_won+1,
             matches_played = matches_played+1 WHERE player = (%s);'''
-
-    # Query the Winner's name
     doQuery(queryWin, data)
-    winnerName =  doQuery(queryName, data)[0][0]
 
     # Update the losers matches_played
     data = (loser,)
     queryLoss = '''UPDATE players SET matches_played = matches_played+1
                 WHERE player = (%s);'''
-
-    # Query the Winner's Name
     doQuery(queryLoss, data)
-    loserName = doQuery(queryName, data)[0][0]
 
-    # Create a match record using the Winner and Loser info
+    # Create a match record using the Winner and Loser ids
     data = (winner, loser)
     queryMatch = '''INSERT INTO matches
                  (winner_id, loser_id)
