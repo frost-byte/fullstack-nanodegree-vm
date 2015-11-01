@@ -117,10 +117,10 @@ def reportMatch(winner, loser):
     loserName = doQuery(queryName, data)[0][0]
 
     # Create a match record using the Winner and Loser info
-    data = ( winner, winnerName, loser, loserName)
+    data = (winner, loser)
     queryMatch = '''INSERT INTO matches
-                 (winner_id, winner_name, loser_id, loser_name)
-                 VALUES ( %s, %s, %s, %s );'''
+                 (winner_id, loser_id)
+                 VALUES ( %s, %s );'''
     doQuery(queryMatch, data)
 
 

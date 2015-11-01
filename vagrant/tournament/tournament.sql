@@ -17,10 +17,8 @@ CREATE TABLE players (
 );
 CREATE TABLE matches (
     match serial PRIMARY KEY,
-    winner_id integer NOT NULL,
-    winner_name varchar(40),
-    loser_id integer NOT NULL,
-    loser_name varchar(40)
+    winner_id integer references players(player),
+    loser_id integer references players(player)
 );
 CREATE VIEW playerstandings AS
     SELECT * from players ORDER BY matches_won desc;
