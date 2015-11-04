@@ -4,21 +4,68 @@
 
 from tournament import *
 
+def testDeletePlayers():
+    tournament = createTournament()
+
+    player1 = createPlayer("Bubba Blue")
+    registerPlayer(player1, tournament)
+
+    player2 = createPlayer("Joe Schmoe")
+    registerPlayer(player2, tournament)
+    reportMatch(tournament, player1, player2)
+    deletePlayers()
+
+    print "2a. Player Records can be deleted."
+
 def testDeleteMatches():
     tournament = createTournament()
 
+    player1 = createPlayer("Joe Bob")
+    registerPlayer(player1, tournament)
+
+    player2 = createPlayer("Billy Jean")
+    registerPlayer(player2, tournament)
+    reportMatch(tournament, player1, player2)
     deleteMatches(tournament)
-    print "1. Old matches can be deleted."
+
+    print "2b. Tournament Matches can be deleted."
+
+
+def testDeleteAllMatches():
+    tournament = createTournament()
+
+    player1 = createPlayer("Joe Bob")
+    registerPlayer(player1, tournament)
+
+    player2 = createPlayer("Billy Jean")
+    registerPlayer(player2, tournament)
+    reportMatch(tournament, player1, player2)
+    deleteAllMatches()
+
+    print "2c. All Matches can be deleted."
+
+
+def testDeleteTournamentPlayers():
+    tournament = createTournament()
+
+    player1 = createPlayer("Joe Bob")
+    registerPlayer(player1, tournament)
+
+    player2 = createPlayer("Billy Jean")
+    registerPlayer(player2, tournament)
+    reportMatch(tournament, player1, player2)
+
+    deleteTournamentPlayers(tournament)
+    print "2d. Players for a specific tournament can be removed"
+    "from the tournament."
 
 
 def testDelete():
-    tournament = createTournament()
+    testDeletePlayers()
+    testDeleteMatches()
+    testDeleteAllMatches()
+    testDeleteTournamentPlayers()
 
-    deleteMatches(tournament)
-    deleteAllMatches()
-    deletePlayers()
-
-    deleteTournamentPlayers(tournament)
     deleteTournaments()
     deleteAllTournamentPlayers()
 
@@ -218,7 +265,6 @@ def testPairings():
 
 
 if __name__ == '__main__':
-    testDeleteMatches()
     testDelete()
     testCount()
     testRegister()

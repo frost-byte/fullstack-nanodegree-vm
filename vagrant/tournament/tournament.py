@@ -5,11 +5,6 @@
 
 import psycopg2
 
-"""
-TODO:
-README
-"""
-
 
 def connect():
     """Connect to the PostgreSQL database.  Returns a database connection."""

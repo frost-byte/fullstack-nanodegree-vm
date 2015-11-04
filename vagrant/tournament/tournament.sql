@@ -24,15 +24,15 @@ CREATE TABLE players (
 
 CREATE TABLE matches (
     match serial PRIMARY KEY,
-    tourn_id integer REFERENCES tournaments(tourn_id) NOT NULL,
-    winner_id integer REFERENCES players(player) NOT NULL,
-    loser_id integer REFERENCES players(player) NOT NULL
+    tourn_id integer REFERENCES tournaments(tourn_id) ,
+    winner_id integer REFERENCES players(player) ON DELETE CASCADE,
+    loser_id integer REFERENCES players(player) ON DELETE CASCADE
 );
 
 
 CREATE TABLE tournament_players (
-    tourn_id integer references tournaments(tourn_id) NOT NULL,
-    player integer references players(player) NOT NULL,
+    tourn_id integer references tournaments(tourn_id) ON DELETE CASCADE,
+    player integer references players(player) ON DELETE CASCADE,
     matches_won integer DEFAULT 0,
     matches_played integer DEFAULT 0,
     PRIMARY KEY(tourn_id, player)
